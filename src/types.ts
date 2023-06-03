@@ -1,3 +1,12 @@
+export interface Product {
+    strMeal: string;
+    strMealThumb: string;
+    idMeal: string;
+    price: number;
+    idCategory: string;
+    strCategory: string;
+}
+
 export interface Category {
     idCategory: string;
     strCategory: string;
