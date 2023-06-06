@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query, ParseIntPipe } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product, Category } from '../types';
 
@@ -7,8 +7,12 @@ export class ProductsController {
     constructor(private readonly ProductsService: ProductsService) {}
 
     @Get('/')
-    async getAllProducts(): Promise<Product[]> {
-        return this.ProductsService.getProducts();
+    async getAllProducts(
+        @Query('page', ParseIntPipe) page: number = 1,
+        @Query('pageSize', ParseIntPipe) pageSize: number = 4
+    ): Promise<Product[]> {
+        const skip = page;
+        return this.ProductsService.getProducts(skip, pageSize);
     }
 
     @Get('/categories')

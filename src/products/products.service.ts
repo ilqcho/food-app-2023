@@ -9,8 +9,10 @@ export class ProductsService {
   private categories: Category[] = [];
   private productsByCategory: Product[] = [];
 
-  getProducts(): Product[] {
-    return this.products.slice(0, 10);
+  getProducts(skip: number, pageSize: number): Product[] {
+    const startIndex = (skip + 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return this.products.slice(startIndex, endIndex);
   }
 
   getCategories(): Category[] {
