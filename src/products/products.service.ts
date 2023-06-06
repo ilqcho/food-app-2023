@@ -10,7 +10,7 @@ export class ProductsService {
   private productsByCategory: Product[] = [];
 
   getProducts(): Product[] {
-    return this.products;
+    return this.products.slice(0, 10);
   }
 
   getCategories(): Category[] {
